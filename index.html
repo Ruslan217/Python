@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta charset="UTF-8">
+    <title>Python by Ruslan217</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
+  </head>
+  <body>
+    <section class="page-header">
+      <h1 class="project-name">Python</h1>
+      <h2 class="project-tagline"></h2>
+      <a href="https://github.com/Ruslan217/Python" class="btn">View on GitHub</a>
+      <a href="https://github.com/Ruslan217/Python/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/Ruslan217/Python/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
+
+    <section class="main-content">
+      <h1>
+<a id="template-for-guess-the-number-mini-project" class="anchor" href="#template-for-guess-the-number-mini-project" aria-hidden="true"><span class="octicon octicon-link"></span></a>template for "Guess the number" mini-project</h1>
+
+<h1>
+<a id="input-will-come-from-buttons-and-an-input-field" class="anchor" href="#input-will-come-from-buttons-and-an-input-field" aria-hidden="true"><span class="octicon octicon-link"></span></a>input will come from buttons and an input field</h1>
+
+<h1>
+<a id="all-output-for-the-game-will-be-printed-in-the-console" class="anchor" href="#all-output-for-the-game-will-be-printed-in-the-console" aria-hidden="true"><span class="octicon octicon-link"></span></a>all output for the game will be printed in the console</h1>
+
+<p>import simplegui
+import random
+import math</p>
+
+<h1>
+<a id="initialize-global-variables-used-in-your-code" class="anchor" href="#initialize-global-variables-used-in-your-code" aria-hidden="true"><span class="octicon octicon-link"></span></a>initialize global variables used in your code</h1>
+
+<p>num_range = 100
+secret_num = 0
+guesses_left = 0</p>
+
+<h1>
+<a id="helper-function-to-start-and-restart-the-game" class="anchor" href="#helper-function-to-start-and-restart-the-game" aria-hidden="true"><span class="octicon octicon-link"></span></a>helper function to start and restart the game</h1>
+
+<p>def new_game():<br>
+    global num_range
+    global secret_num
+    global guesses_left</p>
+
+<pre><code>secret_num = random.randrange(0, num_range)
+
+if num_range == 100 :   
+    guesses_left = 7
+elif num_range == 1000 :
+    guesses_left = 10
+
+
+print "Start game. The range is from 0 to ", num_range, ". Hope you can!"
+print "Number of remaining guesses is ", guesses_left, "\n"
+pass
+</code></pre>
+
+<h1>
+<a id="define-event-handlers-for-control-panel" class="anchor" href="#define-event-handlers-for-control-panel" aria-hidden="true"><span class="octicon octicon-link"></span></a>define event handlers for control panel</h1>
+
+<p>def range100():
+    global num_range
+    num_range = 100 
+    new_game() </p>
+
+<p>def range1000():
+    global num_range
+    num_range = 1000 
+    new_game()</p>
+
+<p>def input_guess(guess):<br>
+    # main game logic goes here 
+    global guesses_left
+    global secret_num </p>
+
+<pre><code>won = False
+
+print "You guessed: ",guess
+guesses_left = guesses_left - 1
+print "Number of remaining guesses is ", guesses_left
+
+if int(guess) == secret_num:       
+    won = True
+elif int(guess) &gt; secret_num:
+    result = "Lower!"
+else:
+    result = "Higher!"                
+
+
+if won:
+    print "That is correct!You won!\n"
+    new_game()
+    return
+elif guesses_left == 0:
+    print "Be optimist and try again!"   
+    new_game()
+    return
+else:
+    print result
+</code></pre>
+
+<h1>
+<a id="create-frame" class="anchor" href="#create-frame" aria-hidden="true"><span class="octicon octicon-link"></span></a>create frame</h1>
+
+<p>frame = simplegui.create_frame("Game: Guess the number!", 250, 250)
+frame.set_canvas_background('Blue')</p>
+
+<h1>
+<a id="register-event-handlers-for-control-elements" class="anchor" href="#register-event-handlers-for-control-elements" aria-hidden="true"><span class="octicon octicon-link"></span></a>register event handlers for control elements</h1>
+
+<p>frame.add_button("Range is [0, 100)", range100, 100)
+frame.add_button("Range is [0, 1000)", range1000, 100)<br>
+frame.add_input("Enter your guess", input_guess, 100)</p>
+
+<h1>
+<a id="call-new_game-and-start-frame" class="anchor" href="#call-new_game-and-start-frame" aria-hidden="true"><span class="octicon octicon-link"></span></a>call new_game and start frame</h1>
+
+<p>new_game()
+frame.start()</p>
+
+<h1>
+<a id="always-remember-to-check-your-completed-program-against-the-grading-rubric" class="anchor" href="#always-remember-to-check-your-completed-program-against-the-grading-rubric" aria-hidden="true"><span class="octicon octicon-link"></span></a>always remember to check your completed program against the grading rubric</h1>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/Ruslan217/Python">Python</a> is maintained by <a href="https://github.com/Ruslan217">Ruslan217</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
+      </footer>
+
+    </section>
+
+  
+  </body>
+</html>
